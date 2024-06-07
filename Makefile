@@ -3,6 +3,7 @@ SOURCE_FILES := $(wildcard src/*.ts)
 dev: dist/antismash_dev.js
 
 dist/antismash_dev.js: $(SOURCE_FILES)
+	rm -f dist/antismash.js
 	npm run compile
 	./node_modules/.bin/webpack --mode development --output-filename $(notdir $@)
 	sed -i "2i /* `git describe --dirty` `git branch --show-current` */" $@
